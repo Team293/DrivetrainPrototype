@@ -153,9 +153,21 @@ public class Drivetrain extends Subsystem {
         double leftPos = left.getY();
         double rightPos = right.getY();
 
-        
-        leftTalonLead.set(TalonFXControlMode.Velocity,(calcMotorPower(leftPos, Ldeadband) * maxRPM));
-        rightTalonLead.set(TalonFXControlMode.Velocity,(calcMotorPower(rightPos, Rdeadband) * maxRPM));
+        double retval = 0.0;
+
+        retval = calcMotorPower(leftPos, Ldeadband);
+        if(INVALID_INPUT == retval) {
+            System.out.println("Invalid left motor input" + leftPos);
+        } else {
+            leftTalonLead.set(TalonFXControlMode.Velocity,(retval * maxRPM));    
+        }
+
+        retval = calcMotorPower(rightPos, Rdeadband);
+        if(INVALID_INPUT == retval) {
+            System.out.println("Invalid right motor input" + rightPos);
+        } else {
+            rightTalonLead.set(TalonFXControlMode.Velocity,(retval * maxRPM));
+        }
     }
 
 
