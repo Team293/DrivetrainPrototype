@@ -132,7 +132,7 @@ public class Drivetrain extends Subsystem {
         double rightPos = right.getY();
         double retval = 0.0;
 
-        retval = calcMotorPower(leftPos, Ldeadband);
+        /*retval = calcMotorPower(leftPos, Ldeadband);
         if(INVALID_INPUT == retval) {
             System.out.println("Invalid left motor input" + leftPos);
         } else {
@@ -144,7 +144,9 @@ public class Drivetrain extends Subsystem {
             System.out.println("Invalid right motor input" + rightPos);
         } else {
             rightTalonLead.set(TalonFXControlMode.Current,retval);    
-        }
+        }*/
+        leftTalonLead.set(TalonFXControlMode.Current,leftPos);   
+        rightTalonLead.set(TalonFXControlMode.Current,rightPos);     
     }
 
     // Converts joystick input adjusted to a RPM for the Falcon's PIDF loop to aim for
