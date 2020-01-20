@@ -143,6 +143,7 @@ public class Drivetrain extends Subsystem {
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
+        //setDefaultCommand(new VelocityDrive());
         setDefaultCommand(new VelocityDrive());
     }
 
@@ -198,15 +199,22 @@ public class Drivetrain extends Subsystem {
         }*/
 
 
+
         leftPID.setReference(leftSetpoint, ControlType.kVelocity);
         rightPID.setReference(rightSetpoint, ControlType.kVelocity);
        
     }
 
+    public void dumbDrive(Joystick left, Joystick right){
+        leftMotor1.set(left.getY());
+        rightMotor1.set(right.getY());
+    }
+
 
     // Stops motor usually used after the drive command ends to prevent shenanigans
     public void stop() {
-    
+        leftMotor1.set(0);
+        rightMotor1.set(0);
     }
 
     //Calculates the motor power to use based on a given deadband and joystick input from -1 to 1
