@@ -63,6 +63,6 @@ public class ArmUp extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-        Robot.climber.leadScrew.set(0);
+        Robot.climber.ArmStop();
     }
 }
