@@ -8,12 +8,12 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package frc.robot;
 
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.subsystems.*;
 
 
@@ -63,7 +63,7 @@ public Joystick rightJoy;
 rightJoy = new Joystick(1);
 
 onOffButton = new JoystickButton(rightJoy, 1);
-onOffButton.whileHeld(new ToggleShooter());
+onOffButton.whenPressed(new ToggleShooter());
 leftJoy = new Joystick(0);
 
 
