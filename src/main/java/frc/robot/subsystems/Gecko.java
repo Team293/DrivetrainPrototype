@@ -77,7 +77,7 @@ geckoSpark.setInverted(false);
 
     public void setGeckoSpeed(){
         if(enabled){
-            double throttleValue = 0.5 * (Robot.oi.rightJoy.getThrottle()) + 0.5;
+            double throttleValue = -1 * (0.5 * (Robot.oi.rightJoy.getThrottle()) + 0.5);
             SmartDashboard.putString("Gecko Status", "Setting Speed");
             SmartDashboard.putNumber("ThrottleValue", throttleValue);
             geckoSpark.set(throttleValue);
