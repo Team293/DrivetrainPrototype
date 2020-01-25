@@ -62,7 +62,7 @@ public Joystick rightJoy;
 
 rightJoy = new Joystick(1);
 
-onOffButton = new JoystickButton(rightJoy, 1);
+onOffButton = new JoystickButton(rightJoy, 12);
 onOffButton.whenPressed(new ToggleShooter());
 leftJoy = new Joystick(0);
 

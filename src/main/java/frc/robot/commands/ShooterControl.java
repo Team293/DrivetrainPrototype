@@ -12,6 +12,7 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -43,7 +44,8 @@ public class ShooterControl extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double paddlePos = Robot.oi.rightJoy.getThrottle();
+        double paddlePos = -((0.5*(Robot.oi.rightJoy.getThrottle())-0.5));
+        SmartDashboard.putNumber("Throttle speed:", paddlePos);
         Robot.shooter.updateMotorSpeed(paddlePos);
         //Get joystick paddle
         //Call shooter.update()
