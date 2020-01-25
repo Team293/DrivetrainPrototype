@@ -65,7 +65,7 @@ rightJoy = new Joystick(1);
 
 leftJoy = new Joystick(0);
 
-findTargetBtn = new JoystickButton(leftJoy, 2);
+findTargetBtn = new JoystickButton(rightJoy, 2);
 findTargetBtn.whileHeld(new findTarget());
 
 
