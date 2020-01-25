@@ -98,6 +98,8 @@ drivetrain = new Drivetrain();
     @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Throttle Value", Robot.oi.rightJoy.getRawAxis(4)
+        );
     }
 
     @Override

@@ -62,7 +62,7 @@ public Joystick rightJoy;
 
 rightJoy = new Joystick(1);
 
-toggleGeckoBtn = new JoystickButton(rightJoy, 1);
+toggleGeckoBtn = new JoystickButton(rightJoy, 7);
 toggleGeckoBtn.whenPressed(new toggleGecko());
 leftJoy = new Joystick(0);
 

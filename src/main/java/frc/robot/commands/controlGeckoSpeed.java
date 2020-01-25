@@ -43,7 +43,8 @@ public class controlGeckoSpeed extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.gecko.setGeckoSpeed(Robot.oi.leftJoy.getThrottle());
+        
+        Robot.gecko.setGeckoSpeed();
     }
 
     // Make this return true when this Command no longer needs to run execute()
