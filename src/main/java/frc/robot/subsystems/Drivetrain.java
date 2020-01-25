@@ -25,7 +25,6 @@ import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonFXConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -56,12 +55,15 @@ public class Drivetrain extends Subsystem {
     private double kP = 0.01;
     private double kI = 0.;
     private double kD = -0;
+
+    private double integral = 0.0;
+    private double rcw = 0.0;
     private double speed = 0.5; // The speed of the drivetrain relative to the Max Speed if you change this change the Trigger stuff
 
-    //v is for vision
-    private double vF = 0.05;
-    private double vP = 0.01;
-    private double vI = 0.;
+    //v is for visio
+    private double vF = 0.0;
+    private double vP = 0.09;
+    private double vI = 0.108;
     private double vD = -0;
 
     private double Ldeadband = .15;
@@ -263,12 +265,15 @@ public class Drivetrain extends Subsystem {
     public void rotateToTarget(){
         if (tAquired.getDouble(0.0) == 1.0){
             double targetX = tx.getDouble(0.0);
+            double error = Math.abs(targetX) - 0; // Error = Target - Actual
+            this.integral += (error*.02); // Integral is increased by the error*time (which is .02 seconds using normal IterativeRobot)
+            this.rcw = kP*error + kI*this.integral;
             if(targetX > TARGET_RIGHT_THRESHOLD){
-                rightTalonLead.set(TalonFXControlMode.PercentOutput,-.2);
-                leftTalonLead.set(TalonFXControlMode.PercentOutput,.2);
+                rightTalonLead.set(TalonFXControlMode.PercentOutput,-rcw);
+                leftTalonLead.set(TalonFXControlMode.PercentOutput,rcw);
             } else if(targetX < TARGET_LEFT_THRESHOLD){
-                leftTalonLead.set(TalonFXControlMode.PercentOutput,-.2);
-                rightTalonLead.set(TalonFXControlMode.PercentOutput,.2);
+                leftTalonLead.set(TalonFXControlMode.PercentOutput,-rcw);
+                rightTalonLead.set(TalonFXControlMode.PercentOutput,rcw);
             } else {
                 stop();
             }
