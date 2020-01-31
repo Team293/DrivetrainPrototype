@@ -43,7 +43,7 @@ public class ShootOn extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.shooter.shoot(true,Robot.oi.getrightJoy().getThrottle());
+        Robot.shooter.shoot(0.5*(-Robot.oi.rightJoy.getThrottle() + 1));
     }
 
     // Make this return true when this Command no longer needs to run execute()
