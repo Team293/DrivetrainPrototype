@@ -179,10 +179,10 @@ public class Drivetrain extends Subsystem {
         }
 
         if(Math.abs(leftPos) >= Ldeadband){
-            leftSetpoint = ((leftPos - Ldeadband) * maxRpm * speed);
+            leftSetpoint = ((leftPos - Ldeadband) * maxRPM * speed);
         }
         if(Math.abs(rightPos) >= Rdeadband){
-            rightSetpoint = ((rightPos - Rdeadband) * maxRpm * speed);
+            rightSetpoint = ((rightPos - Rdeadband) * maxRPM * speed);
         }
 
     }
